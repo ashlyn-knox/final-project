@@ -1,12 +1,13 @@
 <template>
   <div>
-    <Header />
+    <Header
+    pageTitle="Search Results"
+    message="Check out these links for information on getting your stack up and running."
+     />
     <!-- Table goes here -->
     <div>
       <b-table striped hover :items="items"></b-table>
     </div>
-    <!-- Remove or change this -->
-    <p>Thank you</p>
   </div>
 </template>
 
@@ -20,6 +21,9 @@ export default {
   },
   data () {
     return {
+      pageInfo: {
+        name: 'Results'
+      },
       items: []
     }
   }

@@ -1,6 +1,8 @@
 <template>
 <div>
-  <Hero />
+  <Hero
+  pageTitle="Foundations"
+  />
   <article>
     <h2>Introduction to Project</h2>
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Leo integer malesuada nunc vel. Pellentesque adipiscing commodo elit at imperdiet. Vulputate dignissim suspendisse in est ante in nibh.</p>
@@ -67,6 +69,9 @@ export default {
   },
   data () {
     return {
+      pageInfo: {
+        name: 'Home'
+      },
       logos: [
         {
           url: require('../assets/logos/vue.png'),

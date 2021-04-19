@@ -3,7 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Form from '../views/Form.vue'
 import Results from '../views/Results.vue'
-import Docs from '../views/Docs.vue'
+import Docs from '../views/Resources.vue'
 
 Vue.use(VueRouter)
 
@@ -24,8 +24,8 @@ const routes = [
     component: Results
   },
   {
-    path: '/docs',
-    name: 'Docs',
+    path: '/resources',
+    name: 'Resources',
     component: Docs
   }
 ]

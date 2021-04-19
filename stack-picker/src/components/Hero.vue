@@ -1,11 +1,22 @@
 <template>
   <header id="hero">
     <div class=hero-content>
-    <h1>Today I want to talk about Foundations</h1>
+    <h1>Today I want to talk about</h1>
+    <h1>{{ pageTitle }}</h1>
+    <p>{{ message }}</p>
     <button>Click Here</button>
     </div>
     </header>
 </template>
+
+<script>
+export default {
+  props: [
+    'pageTitle',
+    'message'
+  ]
+}
+</script>
 
 <style scoped>
 #hero {

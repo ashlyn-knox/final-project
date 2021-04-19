@@ -6,11 +6,8 @@
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Leo integer malesuada nunc vel. Pellentesque adipiscing commodo elit at imperdiet. Vulputate dignissim suspendisse in est ante in nibh.</p>
 
     <!-- TODO load content dynamically with a loop -->
-    <div class="logo-array">
-      <img src="../assets/images/logos/vue.png" alt="vue logo">
-      <img src="../assets/images/logos/python-logo.png" alt="vue logo">
-      <img src="../assets/images/logos/ExpressJS-logo.png" alt="express logo">
-      <img src="../assets/images/logos/flask-logo.jpg" alt="flask logo">
+    <div>
+      <img width="100px" v-for="(logo, index) in logos" :key="index" :src="logo.url" :alt="logo.alt" />
     </div>
   </article>
   <section>
@@ -62,13 +59,43 @@
 import Hero from '../components/Hero.vue'
 
 export default {
-  name: 'Home',
   components: {
     Hero
+  },
+  props: {
+    logo: Object
+  },
+  data () {
+    return {
+      logos: [
+        {
+          url: require('../assets/logos/vue.png'),
+          altText: 'vue logo'
+        },
+        {
+          url: require('../assets/logos/python-logo.png'),
+          alt: 'flask logo'
+        },
+        {
+          url: require('../assets/logos/node.png'),
+          alt: 'node logo'
+        },
+        {
+          url: require('../assets/logos/ExpressJS-logo.png'),
+          alt: 'node logo'
+        }
+      ]
+    }
   }
 }
 </script>
 
 <style scoped>
+.image-ribbon {
+  background-image: url('../assets/images/pexels-christina-morillo.jpg');
+  background-position: center;
+  background-size: cover;
 
+  height: 40vh;
+}
 </style>

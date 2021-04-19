@@ -9,32 +9,29 @@
             <b-form-radio v-model="selected" :aria-describedby="ariaDescribedby" name="some-radios" value="B">No</b-form-radio>
           </b-form-group>
           <!-- TODO Change the name from flavour here and on data -->
-    <b-form-group label="Programming Languages" v-slot="{ ariaDescribedby }">
+    <b-form-group label=" What programming languages do you prefer?" v-slot="{ ariaDescribedby }">
       <b-form-checkbox-group
         id="checkbox-group-2"
         v-model="selected"
         :aria-describedby="ariaDescribedby"
         name="flavour-2"
       >
-        <b-form-checkbox value="javascript">Javascript</b-form-checkbox>
-        <b-form-checkbox value="python">Python</b-form-checkbox>
-        <b-form-checkbox value="php">PHP</b-form-checkbox>
-        <b-form-checkbox value="sql">SQL</b-form-checkbox>
+        <b-form-checkbox v-for="(language, index) in languages" :key="index" value="language">{{ language }}</b-form-checkbox>
       </b-form-checkbox-group>
+
     </b-form-group>
 
           <!-- Real time functionality TODO: Change values -->
-          <b-form-group label="Does your app need real time functionality?" v-slot="{ ariaDescribedby }">
+          <b-form-group label="Is real time interaction important?" v-slot="{ ariaDescribedby }">
             <b-form-radio v-model="selected" :aria-describedby="ariaDescribedby" name="some-radios" value="A">Yes</b-form-radio>
             <b-form-radio v-model="selected" :aria-describedby="ariaDescribedby" name="some-radios" value="B">No</b-form-radio>
           </b-form-group>
 
-            <!-- TODO change the food stuff -->
-            <b-form-group id="input-group-3" label="How scalable of an app are you making?" label-for="input-3">
+            <b-form-group id="input-group-3" label="How important is scalability important to your project?" label-for="input-3">
               <b-form-select
                   id="input-3"
-                  v-model="form.food"
-                  :options="foods"
+                  v-model="form.levels"
+                  :options="levels"
                   required
                   ></b-form-select>
             </b-form-group>
@@ -45,8 +42,7 @@
                   id="checkboxes-4"
                   :aria-describedby="ariaDescribedby"
                   >
-                  <b-form-checkbox value="me">Check me out</b-form-checkbox>
-                  <b-form-checkbox value="that">Check that out</b-form-checkbox>
+                  <b-form-checkbox value=""></b-form-checkbox>
               </b-form-checkbox-group>
             </b-form-group>
 
@@ -87,8 +83,10 @@ export default {
         food: null,
         checked: []
       },
-      foods: [{ text: 'Select One', value: null }, 'Carrots', 'Beans', 'Tomatoes', 'Corn'],
-      show: true
+      levels: [{ text: 'Select One', value: null }, 'Not Important', 'Somewhat Important', 'Important', 'Very Important'],
+      show: true,
+      languages: ['Javascript', 'Python', 'PHP', 'JSX'],
+      frameworks: ['React', 'Vue', 'Angular', 'Jquery']
     }
   },
   methods: {

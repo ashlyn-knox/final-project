@@ -6,11 +6,9 @@
     <div>
       <h3>Resources</h3>
       <ul>
-        <li><a href="https://flask.palletsprojects.com/en/1.1.x/">Flask Docs</a></li>
-        <li><a href="https://expressjs.com/">Express Docs</a></li>
-        <li><a href="https://vuejs.org/">Vue Docs</a></li>
-        <li><a href="https://python.org">Python Docs</a></li>
-        <li><a href="https://nodejs.org/en/">NodeJs Docs</a></li>
+        <li v-for="(resource, index) in resources" :key="index">
+          <a :href="resource.url">{{ resource.name }}</a>
+        </li>
       </ul>
     </div>
     <nav>
@@ -25,28 +23,72 @@
     </nav>
     <!-- My info -->
     <div>
-      <img src="#" alt="Ashlyn Knox Headshot">
-      <p>Ashlyn Knox</p>
+      <img width="80px" :src="author.photo" :alt="author.name">
+      <p>{{ author.name }}</p>
       <p>Junior Developer</p>
       <!--Social Media Icons -->
       <ul class="social-media">
         <!-- Github -->
-        <li><a href="#">Github</a></li>
+        <li><a :href="author.github">Github</a></li>
         <!-- LinkedIn -->
-        <li><a href="#">LinkedIn</a></li>
+        <li><a :href="author.linkedin"></a>LinkedIn</li>
         <!-- Fedora -->
-        <li><a href="#">Fedora</a></li>
+        <li><a :href="author.pagure">Fedora Pagure</a></li>
       </ul>
     </div>
   </section>
   <section class="footer-copyright">
-    <p>&#169; Copyright 2021 | Ashlyn Knox</p>
+    <p>&#169; Copyright 2021 | {{ author.name }}</p>
   </section>
 </footer>
 </template>
 
 <script>
-export default {}
+export default {
+  data () {
+    return {
+      author: {
+        name: 'Ashlyn Knox',
+        photo: require('../assets/images/ashlyn.jpg'),
+        github: 'https://github.com/ashlyn-knox',
+        linkedin: 'https://linkedin.com/in/ashlyn-knox13',
+        pagure: 'https://pagure.io/user/lilyx'
+      },
+      resources: [
+        {
+          name: 'Flask',
+          url: 'https://flask.palletsprojects.com/en/1.1.x/',
+          logo: require('../assets/logos/flask-logo.jpg'),
+          alt: 'Flask Logo'
+        },
+        {
+          name: 'Vue',
+          url: 'https://vuejs.org/',
+          logo: require('../assets/logos/vue.png'),
+          alt: 'Vue Logo'
+        },
+        {
+          name: 'Express',
+          url: 'https://expressjs.com/',
+          logo: require('../assets/logos/ExpressJS-logo.png'),
+          alt: 'Express Logo'
+        },
+        {
+          name: 'Python',
+          url: 'https://python.org/',
+          logo: require('../assets/logos/python-logo.png'),
+          alt: 'Python Logo'
+        },
+        {
+          name: 'Node',
+          url: 'https://nodejs.org/',
+          logo: require('../assets/logos/node.png'),
+          alt: 'Node Logo'
+        }
+      ]
+    }
+  }
+}
 </script>
 
 <style scoped>

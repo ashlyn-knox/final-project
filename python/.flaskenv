@@ -1,0 +1,2 @@
+FLASK_APP=pysearchapp
+FLASK_ENV=development

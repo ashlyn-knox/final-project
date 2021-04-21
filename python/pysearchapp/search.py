@@ -1,92 +1,127 @@
 # Import modules
-import json
-from googlesearch import search
-from pymongo import MongoClient
-from settings import mongo
+# import json
+# from googlesearch import search
+# from pymongo import MongoClient
+# from settings import mongo
 # pprint makes the output look better
 
-from pprint import pprint
-# connect to mongodb TODO FIX THIS
-client = MongoClient(mongo)
-db=client.admin
-# print results of server status
-serverStatusResults=db.command("serverStatus")
-pprint(serverStatusResult)
+# from pprint import pprint
+# # connect to mongodb TODO FIX THIS
+# client = MongoClient(mongo)
+# db=client.admin
+# # print results of server status
+# serverStatusResults=db.command("serverStatus")
+# pprint(serverStatusResult)
 
 # Read JSON file for search terms TODO move this to a separate file and then import it for assigning values to queries etc
 
-
-# ### SERVER VARIABLES ### #
-django = 0
-flask = 0
-express = 0
-laravel = 0
-rubyonrails = 0
-sinatra = 0
-
-# ### DB VARIABLES ### #
-nosql = 0
-sql = 0
+# ## SERVER VARIABLES ### #
+framework = {
+    "django": 0,
+    "flask": 0,
+    "express": 0,
+    "laravel": 0,
+    "rubyonrails": 0,
+    "sinatra": 0
+}
 
 # ### Frontend VARIABLES ### #
-jinja = 0
-ejs = 0
-blade = 0
+frontend = {
+    "jinja": 0,
+    "ejs": 0,
+    "blade": 0,
+    "react": 0,
+    "vue": 0,
+    "angular":0
+}
 
-react = 0
-vue = 0
-angular = 0
+databases = {
+    "nosql": 0,
+    "sql": 0
+}
+# Test input
+python = input('Python yes or no: ')
+javascript = input('Javascript yes or no: ')
+print(javascript)
+ruby = input('ruby yes or no: ')
+print(ruby)
+php = input('php yes or no: ')
+print(php)
+
+# set to boolean data type for production
+if python == True: 
+    framework['django'] += 5
+    framework['flask'] += 5
+    frontend['jinja'] += 1
+elif javascript == 'yes':
+    framework['express'] += 5
+    frontend['ejs'] += 1
+    frontend['react'] += 2
+    frontend['vue'] += 2
+    frontend['angular'] += 2
+elif ruby == 'yes':
+    framework['rubyonrails'] += 5
+    framework['sinatra'] += 5
+elif php == 'yes':
+    framework['laravel'] += 5
+    frontend['blade'] += 1
+else:
+    print('ERROR')
+
+# if the user wants to try a new language
+# TODO logic: IF any in the language equaption is false, add +3 to it. this should be in the same function
+
 # TODO write code that analyzes the form results here and then put that in a separate file that sends data to here
-def languageScore():
-    if python == True:
-        django += 5
-        flask += 5
-        jinja += 1
-    elif javascript == True:
-        express += 5
-        ejs += 1
-        react += 2
-        vue += 2
-        angular += 2
-    elif ruby == True:
-        rubyonrails += 5
-        sinatra +=5
-    elif php == True:
-        laravel += 5
-        blade += 1
-    else:
-        return print('error')
     # calculate scores and return all values
+mature = input('mature framework yes or no: ')
+scalable = input('scalable importance yes no')
+fastDev = input('fastDev yes no')
+realTime = input('Real time function yes no')
+machineAi = input('Machinelearning y n')
+microframe = input('Do you want a microframework')
+if mature == 'yes':
+    framework['django'] += 2
+    framework['rubyonrails'] += 2
+if scalable == 'yes':
+    framework['django'] += 2
+    framework['express'] += 2
+if fastDev == 'yes':
+    framework['flask'] += 2
+    framework['express'] += 2
+    framework['sinatra'] += 2
+if realTime == 'yes':
+    framework['express'] += 2
+if machineAi == 'yes':
+    framework['django'] += 2
+    framework['flask'] += 2
+if microframe == 'yes':
+    framework['express'] += 2
+    framework['flask'] += 2
+    framework['laravel'] += 2
+    framework['sinatra'] +=2
 
-def performanceScore():
-    if mature == True:
-        django += 2
-        rubyonrails += 2
-    if scalabe == True:
-        django += 2
-        express += 2
-    if fastDev == True:
-        django += 1
-        flask += 2
-        express += 2
-        sinatra += 2
-    if realTime == True:
-        express += 2
-    if machineAi == True:
-        django += 2
-        flask += 2
     # calculate scores and return all values
-def databaseScore():
-    if flexibleData == True:
-        nosql += 5
-    if structuredData == True:
-        sql += 5
-    # calculate scores and return all values
+flexibleData = input('Flexible data model?')
+structuredData = input('structured data?')
+if flexibleData == 'yes':
+        databases['nosql'] += 5
+if structuredData == 'yes':
+        databases['sql'] += 5
+# calculate scores and return all values
+
+frameworkQuery = max(framework)
+print(frameworkQuery)
+
+frontendQuery = max(frontend)
+print(frontendQuery)
+
+databaseQuery = max(databases)
+print(databaseQuery)
 
 # Google search server + documentation + tutorial
-for item in search(query):
-    print(item)
-# Google search frontend framework + documentation + tutorial
+# for item in search(query):
+    # print(item)
+# # Google search frontend framework + documentation + tutorial
 
 # Google search Database  + documentation + tutorial
 

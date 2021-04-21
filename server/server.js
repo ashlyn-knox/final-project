@@ -15,11 +15,13 @@ app.use(bodyParser.json())
  app.use(cors())
 // error page
 
+// routes middleware
+app.use('/', routes)
 // serve vue files
-app.use(express.static('../stack-picker/src/public'))
+app.use(express.static('../client/src/public'))
 
 app.get('/', (req, res) => {
-  res.sendFile(path.resolve('../stack-picker/public/index.html'))
+  res.sendFile(path.resolve('../client/public/index.html'))
 })
 // basic endpoint
 app.get('/', (req, res) => {

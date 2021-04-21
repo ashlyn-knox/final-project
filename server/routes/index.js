@@ -1,11 +1,25 @@
 const express = require('express')
 const formCollection = require('./api/form')
 const formData = require('../models/form')
+const request = require('request')
 const router = express.Router()
 
 router.use(express.urlencoded({extended: true}))
 
-// form middleware
+// home route TODO set to vue
+router.get('/', (req, res) => {
+  res.send('node home')
+})
+
+// Connect to flask server TODO send form data to this
+router.get('/home', (req, res) => {
+  request('http://127.0.0.1:5000/flask', (error, response, body) => {
+    console.log('error:', error)
+    console.log('statusCode:', response && response.statusCode)
+    console.log('body:', body)
+    res.send(body)
+  })
+})
 // post form TODO review fcc tutorial
 router.post('/form', async (req, res, next) => {
   try {
@@ -20,5 +34,8 @@ router.post('/form', async (req, res, next) => {
     res.sendStatus(404)
   }
 })
+
+// Normal Routes
+
 
 module.exports = router

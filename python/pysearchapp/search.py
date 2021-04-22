@@ -1,27 +1,39 @@
 # Import modules
 import json
 from googlesearch import search
+import pymongo
 from pymongo import MongoClient
+# This isn't working properly
 from settings import mongo
 
 # pprint makes the output look better
 from pprint import pprint
 
 # # connect to mongodb
-# client = MongoClient(mongo)
-# db=client.admin
+cluster= MongoClient("mongodb+srv://ashy:uoCXMG1Dn2vDPepA@cluster0.tq1dm.mongodb.net/stackapp?retryWrites=true&w=majority")
+db=cluster["stackapp"]
+# db=cluster.admin was original code for above
+collection = db["forms"]
+
+# insert data for test
+post = {
+    "python": True,
+    "javascript": True
+}
+# insert into collection
+collection.insert_one(post)
 # # print results of server status
 # serverStatusResults=db.command("serverStatus")
 # pprint(serverStatusResult)
 
 # Read JSON file for search terms TODO move this to a separate file and then import it for assigning values to queries etc
-
 # Connect this to database or to api for reading
-form_data = open("../test.json", "r")
+# read from database
 
-form_results = json.load(form_data)
+form_data = collection.find_one()
 
-form_item = list(form_results)
+
+form_item = list(form_data)
 
 # ## SERVER VARIABLES ### #
 framework = {

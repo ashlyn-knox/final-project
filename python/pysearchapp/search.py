@@ -1,16 +1,17 @@
 # Import modules
-# import json
-# from googlesearch import search
-# from pymongo import MongoClient
-# from settings import mongo
-# pprint makes the output look better
+import json
+from googlesearch import search
+from pymongo import MongoClient
+from settings import mongo
 
-# from pprint import pprint
-# # connect to mongodb TODO FIX THIS
-# client = MongoClient(mongo)
-# db=client.admin
+# pprint makes the output look better
+from pprint import pprint
+
+# # connect to mongodb
+client = MongoClient(mongo)
+db=client.admin
 # # print results of server status
-# serverStatusResults=db.command("serverStatus")
+serverStatusResults=db.command("serverStatus")
 # pprint(serverStatusResult)
 
 # Read JSON file for search terms TODO move this to a separate file and then import it for assigning values to queries etc
@@ -119,11 +120,15 @@ databaseQuery = max(databases)
 print(databaseQuery)
 
 # Google search server + documentation + tutorial
-# for item in search(query):
-    # print(item)
+for item in search(frameworkQuery):
+    print(item)
 # # Google search frontend framework + documentation + tutorial
+for item in search(frontendQuery):
+    print(item)
 
 # Google search Database  + documentation + tutorial
+for item in search(databaseQuery):
+    print(item)
 
 # Google search  query terms together to find stack building tutorials
 

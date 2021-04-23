@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
 })
 
 // Connect to flask server TODO send form data to this
-router.get('/home', (req, res) => {
+router.get('/flask', (req, res) => {
   request('http://127.0.0.1:5000/flask', (error, response, body) => {
     console.log('error:', error)
     console.log('statusCode:', response && response.statusCode)
@@ -20,7 +20,8 @@ router.get('/home', (req, res) => {
     res.send(body)
   })
 })
-// post form TODO review fcc tutorial
+
+// TODO integrate with flask server
 router.post('/form', async (req, res, next) => {
   try {
     const formItem = new formData(req.body)

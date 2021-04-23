@@ -9,11 +9,22 @@ const app = express()
 
 // morgan log generator
 app.use(morgan('combined'))
+//
+// Morgan Logger
+morgan((tokens, req, res) => {
+  return [
+    tokens.methods(req, res),
+    tokens.url(req, res),
+    tokens.status(req,res),
+    tokens.res(req, res, 'content-length'), '-',
+    tokens['response-time'](req, res), 'ms' 
+  ].join(' ')
+})
+
 // bodyParser for JSON
 app.use(bodyParser.json())
 // cors This can cause security issues - probably don't use it.
  app.use(cors())
-// error page
 
 // routes middleware
 app.use('/', routes)
@@ -31,20 +42,9 @@ app.get('/', (req, res) => {
   })
 })
 
-// Morgan Logger
-morgan((tokens, req, res) => {
-  return [
-    tokens.methods(req, res),
-    tokens.url(req, res),
-    tokens.status(req,res),
-    tokens.res(req, res, 'content-length'), '-',
-    tokens['response-time'](req, res), 'ms' 
-  ].join(' ')
-})
-
-
 // Define port
 const PORT = process.env.PORT || 8081
+
 // listen on port
 app.listen(PORT, () => {
   console.log(`Listening on Port ${PORT}`)

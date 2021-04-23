@@ -3,21 +3,29 @@ import json
 from googlesearch import search
 import pymongo
 from pymongo import MongoClient
-# environment variable
-from .settings import mongo
+# Environment variables
+import os
+from os.path import join, dirname
+from dotenv import load_dotenv
+
+dotenv_path=join(dirname(__file__),'.env')
+load_dotenv(dotenv_path)
+
+MONGO_URI = os.environ.get('MONGO_URI')
+mongo = MONGO_URI
 # pprint makes the output look better
 from pprint import pprint
 
 # connect to mongo atlas
 try:
-    cluster = MongoClient(mongo)
+    cluster = MongoClient('mongodb+srv://ashy:uoCXMG1Dn2vDPepA@cluster0.tq1dm.mongodb.net/stackapp?retryWrites=true&w=majority')
 except Error as err:
     print("import", err)
 
 # Database access cluser and collection
 db=cluster["stackapp"]
 collection = db["forms"]
-form_data = collection.find_one()
+form_data = collection.find_one({})
 
 # make individual items easily accessible
 form_item = list(form_data)
@@ -162,20 +170,20 @@ frontendQuery = max(frontend)
 databaseQuery = max(databases)
 
 # Google search server + database + tutorial
-for item in search(frameworkQuery + databaseQuery, num=5, stop=5, lang="en", pause=2.0):
+for item in search(frameworkQuery + "webdev", num=5, stop=5, lang="en"):
     print(item)
 
 # # Google search frontend and backend frameworks together
-for item in search(frontendQuery + frameworkQuery, num=5, stop=5, lang="en", pause=2.0):
+for item in search(frontendQuery + frameworkQuery, num=5, lang="en"):
     print(item)
 
 # Database Links
-for item in search(databaseQuery, num=4, stop=4, lang="en", pause=2.0):
+for item in search(databaseQuery, num=4, lang="en"):
     print(item)
 # Frontend Links
-for item in search(frontendQuery, num=4, stop=4, lang="en", pause=2.0):
+for item in search(frontendQuery, num=4, lang="en"):
     print(item)
 
 # Backend Links
-for item in search(frameworkQuery, num=4, stop=4, lang="en", pause=2.0):
+for item in search(frameworkQuery, num=4, lang="en"):
     print(item)

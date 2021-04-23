@@ -3,23 +3,90 @@ import json
 from googlesearch import search
 import pymongo
 from pymongo import MongoClient
-# This isn't working properly
+# environment variable
 from .settings import mongo
 
 # pprint makes the output look better
 from pprint import pprint
 
-# # connect to mongodb
-cluster= MongoClient(mongo)
-db=cluster["stackapp"]
-# db=cluster.admin was original code for above
-collection = db["forms"]
+# connect to mongo atlas
+try:
+    cluster= MongoClient(mongo)
+except Error as err:
+    print(err)
 
+# Database access cluser and collection
+db=cluster["stackapp"]
+collection = db["forms"]
 form_data = collection.find_one()
 
+# make individual items easily accessible
 form_item = list(form_data)
 
-# ## SERVER VARIABLES ### #
+
+# assign values from db to variables
+# Python
+if form_item[1] != "python":
+    print('incorrect named python variable in db data')
+else:
+    python = form_item[1]
+# JavaScript
+if form_item[2] != "javascript":
+    print('incorrect named javascript variable in db data')
+else:
+    javascript = form_item[2] 
+# Ruby
+if form_item[3] != "ruby":
+    print('incorrect named ruby variable in db data')
+else:
+    ruby = form_item[3] 
+# PHP
+if form_item[4] != "php":
+    print('incorrect named php variable in db data')
+else:
+    php = form_item[4] 
+# Mature Libraries
+if form_item[5] != "mature":
+    print('incorrect named mature variable in db data')
+else:
+    mature = form_item[5]
+# Scalable framework
+if form_item[6] != "scalable":
+    print('incorrect named mature variable in db data')
+else:
+    scalable = form_item[6] 
+# Fast Development setup
+if form_item[7] != "fastDev":
+    print('incorrect named fastDev variable in db data')
+else:
+    fastDev = form_item[7] 
+# Real Time Async behaviour
+if form_item[8] != "realTime":
+    print('incorrect named realTime variable in db data')
+else:
+    realTime = form_item[8] 
+# Machine Learning and AI
+if form_item[9] != "machineAi":
+    print('incorrect named machineAi variable in db data')
+else:
+    machineAi = form_item[9] 
+# Microframework
+if form_item[10] != "microframe":
+    print('incorrect named microframe variable in db data')
+else:
+    microframe = form_item[10] 
+# NoSQL
+if form_item[11] != "flexibleData":
+    print('incorrect named flexibleData variable in db data')
+else:
+    flexibleData = form_item[11]
+# SQL
+if form_item[12] != "structuredData":
+    print('incorrect named structuredData variable in db data')
+else:
+    structuredData = form_item[12] 
+
+# ANALYSIS: Backend variables
 framework = {
     "django": 0,
     "flask": 0,
@@ -29,7 +96,7 @@ framework = {
     "sinatra": 0
 }
 
-# ### Frontend VARIABLES ### #
+# ANALYSIS: Frontend Variables
 frontend = {
     "jinja": 0,
     "ejs": 0,
@@ -39,18 +106,11 @@ frontend = {
     "angular":0
 }
 
+# ANALYSIS: Database Variables. TODO Expand for more specific inquery later
 databases = {
     "nosql": 0,
     "sql": 0
 }
-# Test input
-item_id = form_item[0]
-print(item_id)
-
-python = form_item[1]
-javascript = form_item[2] 
-ruby = form_item[3]
-php = form_item[4]
 
 # set to boolean data type for production
 if python == True: 
@@ -72,12 +132,6 @@ elif php == True:
 else:
     print('Error: Items not assigning values')
 
-mature = form_item[5]
-scalable = form_item[5] 
-fastDev = form_item[7]
-realTime = form_item[8] 
-machineAi = form_item[9]
-microframe = form_item[10]
 if mature == True:
     framework['django'] += 2
     framework['rubyonrails'] += 2
@@ -99,35 +153,31 @@ if microframe == True:
     framework['laravel'] += 2
     framework['sinatra'] +=2
 
-    # calculate scores and return all values
-flexibleData = form_item[11]
-structuredData = form_item[12] 
 if flexibleData == 'yes':
         databases['nosql'] += 5
 if structuredData == 'yes':
         databases['sql'] += 5
-# calculate scores and return all values
 
+# calculate scores and return all values
 frameworkQuery = max(framework)
-print(frameworkQuery)
 
 frontendQuery = max(frontend)
-print(frontendQuery)
 
 databaseQuery = max(databases)
-print(databaseQuery)
 
-# Google search server + documentation + tutorial
-for item in search(frameworkQuery + databaseQuery, num=4, stop=4, lang="en", pause=2.0):
+# Google search server + database + tutorial
+for item in search(frameworkQuery + databaseQuery + "setup", num=5, stop=5, lang="en", pause=2.0):
     print(item)
-# # Google search frontend framework + documentation + tutorial
-for item in search(frontendQuery + frameworkQuery, num=4, stop=4, lang="en", pause=2.0):
+# # Google search frontend and backend frameworks together
+for item in search(frontendQuery + frameworkQuery + "setup", num=5, stop=5, lang="en", pause=2.0):
     print(item)
 
-# Google search Database  + documentation + tutorial
+# Google search each component individually
 for item in search(databaseQuery, num=4, stop=4, lang="en", pause=2.0):
     print(item)
+for item in search(frontendQuery, num=4, stop=4, lang="en", pause=2.0):
+    print(item)
+for item in search(framworkQuery, num=4, stop=4, lang="en", pause=2.0):
+    print(item)
 
-# Google search  query terms together to find stack building tutorials
-
-# Send data to other json file that the node server will pull from to display
+# Export search results

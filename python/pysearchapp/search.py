@@ -5,15 +5,14 @@ import pymongo
 from pymongo import MongoClient
 # environment variable
 from .settings import mongo
-
 # pprint makes the output look better
 from pprint import pprint
 
 # connect to mongo atlas
 try:
-    cluster= MongoClient(mongo)
+    cluster = MongoClient(mongo)
 except Error as err:
-    print(err)
+    print("import", err)
 
 # Database access cluser and collection
 db=cluster["stackapp"]
@@ -22,7 +21,6 @@ form_data = collection.find_one()
 
 # make individual items easily accessible
 form_item = list(form_data)
-
 
 # assign values from db to variables
 # Python
@@ -103,7 +101,7 @@ frontend = {
     "blade": 0,
     "react": 0,
     "vue": 0,
-    "angular":0
+    "angular": 0
 }
 
 # ANALYSIS: Database Variables. TODO Expand for more specific inquery later
@@ -160,24 +158,24 @@ if structuredData == 'yes':
 
 # calculate scores and return all values
 frameworkQuery = max(framework)
-
 frontendQuery = max(frontend)
-
 databaseQuery = max(databases)
 
 # Google search server + database + tutorial
-for item in search(frameworkQuery + databaseQuery + "setup", num=5, stop=5, lang="en", pause=2.0):
-    print(item)
-# # Google search frontend and backend frameworks together
-for item in search(frontendQuery + frameworkQuery + "setup", num=5, stop=5, lang="en", pause=2.0):
+for item in search(frameworkQuery + databaseQuery, num=5, stop=5, lang="en", pause=2.0):
     print(item)
 
-# Google search each component individually
+# # Google search frontend and backend frameworks together
+for item in search(frontendQuery + frameworkQuery, num=5, stop=5, lang="en", pause=2.0):
+    print(item)
+
+# Database Links
 for item in search(databaseQuery, num=4, stop=4, lang="en", pause=2.0):
     print(item)
+# Frontend Links
 for item in search(frontendQuery, num=4, stop=4, lang="en", pause=2.0):
     print(item)
-for item in search(framworkQuery, num=4, stop=4, lang="en", pause=2.0):
-    print(item)
 
-# Export search results
+# Backend Links
+for item in search(frameworkQuery, num=4, stop=4, lang="en", pause=2.0):
+    print(item)

@@ -8,7 +8,7 @@
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Leo integer malesuada nunc vel. Pellentesque adipiscing commodo elit at imperdiet. Vulputate dignissim suspendisse in est ante in nibh.</p>
 
     <!-- TODO load content dynamically with a loop -->
-    <div>
+    <div class="logos">
       <img width="100px" v-for="(logo, index) in logos" :key="index" :src="logo.url" :alt="logo.alt" />
     </div>
   </article>
@@ -18,7 +18,7 @@
   <!-- So what statement -->
   <article>
     <h2>Why is this important?</h2>
-    <p>Leo integer malesuada nunc vel. Pellentesque adipiscing commodo elit at imperdiet.</p>
+    <p>Because there are so many choices and it is satisfying for both the developer and user when the right choice is made</p>
     <section>
       <div>
         <h3>Python Server</h3>
@@ -97,11 +97,18 @@ export default {
 </script>
 
 <style scoped>
+article {
+  padding: 2rem;
+}
+
 .image-ribbon {
   background-image: url('../assets/images/pexels-christina-morillo.jpg');
   background-position: center;
   background-size: cover;
 
   height: 40vh;
+}
+.logos > * {
+  margin: 1rem;
 }
 </style>

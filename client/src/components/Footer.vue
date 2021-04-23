@@ -23,7 +23,7 @@
     </nav>
     <!-- My info -->
     <div>
-      <img width="80px" :src="author.photo" :alt="author.name">
+      <img class="author-image" width="80px" :src="author.photo" :alt="author.name">
       <p>{{ author.name }}</p>
       <p>Junior Developer</p>
       <!--Social Media Icons -->
@@ -101,9 +101,10 @@ ul {
   flex-direction: column;
 }
 .footer-main {
-  background-color: grey;
+  background-color: #232121;
   color: ghostwhite;
   margin: 0 auto;
+  padding: 12px;
   width: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -120,5 +121,9 @@ ul {
   display: flex;
   justify-content: center;
   align-items:center;
+}
+.author-image {
+  border-radius: 25%;
+  margin-top: 16px;
 }
 </style>

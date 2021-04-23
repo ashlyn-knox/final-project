@@ -4,34 +4,18 @@ from googlesearch import search
 import pymongo
 from pymongo import MongoClient
 # This isn't working properly
-from settings import mongo
+from .settings import mongo
 
 # pprint makes the output look better
 from pprint import pprint
 
 # # connect to mongodb
-cluster= MongoClient("mongodb+srv://ashy:uoCXMG1Dn2vDPepA@cluster0.tq1dm.mongodb.net/stackapp?retryWrites=true&w=majority")
+cluster= MongoClient(mongo)
 db=cluster["stackapp"]
 # db=cluster.admin was original code for above
 collection = db["forms"]
 
-# insert data for test
-post = {
-    "python": True,
-    "javascript": True
-}
-# insert into collection
-collection.insert_one(post)
-# # print results of server status
-# serverStatusResults=db.command("serverStatus")
-# pprint(serverStatusResult)
-
-# Read JSON file for search terms TODO move this to a separate file and then import it for assigning values to queries etc
-# Connect this to database or to api for reading
-# read from database
-
 form_data = collection.find_one()
-
 
 form_item = list(form_data)
 
@@ -60,11 +44,13 @@ databases = {
     "sql": 0
 }
 # Test input
-python = form_item[0]
-print(python)
-javascript = form_item[1] 
-ruby = form_item[2]
-php = form_item[3]
+item_id = form_item[0]
+print(item_id)
+
+python = form_item[1]
+javascript = form_item[2] 
+ruby = form_item[3]
+php = form_item[4]
 
 # set to boolean data type for production
 if python == True: 
@@ -86,17 +72,12 @@ elif php == True:
 else:
     print('Error: Items not assigning values')
 
-# if the user wants to try a new language
-# TODO logic: IF any in the language equaption is false, add +3 to it. this should be in the same function
-
-# TODO write code that analyzes the form results here and then put that in a separate file that sends data to here
-    # calculate scores and return all values
-mature = form_item[4]
+mature = form_item[5]
 scalable = form_item[5] 
-fastDev = form_item[6]
-realTime = form_item[7] 
-machineAi = form_item[8]
-microframe = form_item[9]
+fastDev = form_item[7]
+realTime = form_item[8] 
+machineAi = form_item[9]
+microframe = form_item[10]
 if mature == True:
     framework['django'] += 2
     framework['rubyonrails'] += 2
@@ -119,8 +100,8 @@ if microframe == True:
     framework['sinatra'] +=2
 
     # calculate scores and return all values
-flexibleData = form_item[9]
-structuredData = form_item[10] 
+flexibleData = form_item[11]
+structuredData = form_item[12] 
 if flexibleData == 'yes':
         databases['nosql'] += 5
 if structuredData == 'yes':
@@ -137,14 +118,14 @@ databaseQuery = max(databases)
 print(databaseQuery)
 
 # Google search server + documentation + tutorial
-for item in search(frameworkQuery):
+for item in search(frameworkQuery + databaseQuery, num=4, stop=4, lang="en", pause=2.0):
     print(item)
 # # Google search frontend framework + documentation + tutorial
-for item in search(frontendQuery):
+for item in search(frontendQuery + frameworkQuery, num=4, stop=4, lang="en", pause=2.0):
     print(item)
 
 # Google search Database  + documentation + tutorial
-for item in search(databaseQuery):
+for item in search(databaseQuery, num=4, stop=4, lang="en", pause=2.0):
     print(item)
 
 # Google search  query terms together to find stack building tutorials

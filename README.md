@@ -3,28 +3,25 @@
 * Website
 
 ## Overview
-This website is designed to help developers choose a framework when they are weighing options.
+This site is a space to develop integration between node and python servers. The long term goal is to be able to explore how AI and machine learning can be optimized on a python server to interact with users on a vuejs frontend framework. I want to be able to explore integrating python with javascript's asynchronous functionality and Express's scalability.
+
+### Core Values
+* Modularity
+* Scalability
+* Curiosity
+* Flexibility
+
+## Basic Setup
 
 ### Frontend
 * VueJs frontend framework
-* bootstrap-vue used for components
+* bootstrap-vue
 
-## Task organizer
-### April 18 Tasks
-* TODO load all images and logos onto pages
-* TODO Set up script for bootstrap components
-* TODO Set up variables for page titles and the like
-* TODO Global sass setup - fonts, colours, headers, footers
-* Draft Copy Text instead of placeholder text
-* Set up components so that they send information between one another correctly
-
-### April 17 Tasks
-* DONE create views
-* DONE create components
-* DONE basic page layout draft
-* DONE use bootstrap for major components
-* DONE find images for main sections
-* DONE put a picture of myself in the footer with my information
+### Backend Setup
+* Node Express web server
+* Mongo Atlas Database
+* Flask server
+* Python API
 
 ## Attributions
 * 

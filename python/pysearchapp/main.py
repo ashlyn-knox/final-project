@@ -2,7 +2,7 @@ from flask import Flask
 from flask import Blueprint
 # connection to mongodb
 from .extensions import mongo
-
+from .search import search
 
 # for mapping data to mongoDb
 main = Blueprint('main', __name__)

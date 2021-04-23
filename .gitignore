@@ -1,9 +1,11 @@
 node_modules/
 
+pres_stuff/
+
 .env
 
 .venv
 
-pres-notes.md
 
-presentation_notes.md
+
+
